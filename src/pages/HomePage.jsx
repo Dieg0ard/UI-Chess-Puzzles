@@ -8,7 +8,7 @@ export default function HomePage() {
       <div className="left-panel">
         <h1 className="title">Chess Puzzles</h1>
         <p><em>Plataforma de entreamiento de ajedrez</em></p>
-        <button className="button">Login</button>
+        <button className="button">Iniciar Sesión</button>
         <button className="button">Registrarse</button>
       </div>
 
