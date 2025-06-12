@@ -76,7 +76,7 @@ return (
     <div style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
       Puzzles resueltos: {solvedCount}
     </div>
-    <p>Puzzle ID: {puzzleId}</p>
+    {/* <p>Puzzle ID: {puzzleId}</p> */}
     <ChessBoard
       fen={fen}
       game={game}
