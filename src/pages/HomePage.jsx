@@ -1,5 +1,6 @@
 import React from "react";
 import "./HomePage.css";
+import { Link } from "react-router-dom";
 
 export default function HomePage() {
   return (
@@ -8,8 +9,16 @@ export default function HomePage() {
       <div className="left-panel">
         <h1 className="title">Chess Puzzles</h1>
         <p><em>Plataforma de entreamiento de ajedrez</em></p>
-        <button className="button">Iniciar Sesión</button>
-        <button className="button">Registrarse</button>
+        <Link to="/login">
+         <button className="button">Iniciar Sesión</button>
+        </Link>
+       <Link to="/register">
+       <button className="button">Registrarse</button>
+       </Link>
+       <Link to ="/game">
+       <button className="button">Invitado</button>
+       </Link>
+        
       </div>
 
       {/* Parte Derecha */}
