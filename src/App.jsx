@@ -1,7 +1,7 @@
 // App.jsx
 import React from "react";
 import HomePage from "./pages/HomePage";
-import ChessBoard from "./components/ChessBoard";
+import ChessBoard from "./components/ChessBoardContainer";
 // import { Chess } from 'chess.js';
 
 function App() {
@@ -13,8 +13,8 @@ function App() {
   // });
 
 
-  // return <HomePage />;
-    return <ChessBoard />;
+  return <HomePage />;
+    // return <ChessBoard />;
 
 }
 
