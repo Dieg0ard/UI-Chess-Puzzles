@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ChessBoard from "./ChessBoard";
 import { Chess } from "chess.js";
+import { Link } from "react-router-dom";
 
 const ChessBoardContainer = () => {
   const [fen, setFen] = useState("start");
@@ -9,7 +10,7 @@ const ChessBoardContainer = () => {
   const [puzzleId, setPuzzleId] = useState(null);
   const [game, setGame] = useState(null);
   const [currentMoveIndex, setCurrentMoveIndex] = useState(0);
-  const [solvedCount, setSolvedCount] = useState(0); // 🔥 contador de puzzles resueltos
+  const [solvedCount, setSolvedCount] = useState(0);
 
   const fetchRandomPuzzle = async () => {
     const randomId = Math.floor(Math.random() * 50) + 1;
@@ -53,47 +54,85 @@ const ChessBoardContainer = () => {
 
   const handlePuzzleSolved = () => {
     console.log("✅ Puzzle resuelto");
-    setSolvedCount((prev) => prev + 1); // 🔥 incrementar contador
+    setSolvedCount((prev) => prev + 1);
     setTimeout(() => {
       fetchRandomPuzzle();
-    }, 1000);
+    }, 100);
   };
 
   if (!game) return <p>Cargando...</p>;
 
-return (
-  <div
-    style={{
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",     // centra horizontalmente
-      justifyContent: "center", // opcional: centra verticalmente
-      minHeight: "100vh",
-      width: "100%",
-      textAlign: "center"
-    }}
-  >
-    <div style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
-      Puzzles resueltos: {solvedCount}
+  return (
+    <div
+      style={{
+        position: "relative",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        minHeight: "100vh",
+        width: "100%",
+        textAlign: "center"
+      }}
+    >
+      {/* Contenedor de botones */}
+      <div
+        style={{
+          position: "absolute",
+          top: "10px",
+          left: "10px",
+          display: "flex",
+          gap: "10px"
+        }}
+      >
+        <button
+          onClick={fetchRandomPuzzle}
+          style={{
+            padding: "8px 12px",
+            backgroundColor: "#fff",
+            color: "black",
+            border: "none",
+            borderRadius: "5px",
+            cursor: "pointer"
+          }}
+        >
+          Nuevo puzzle
+        </button>
+        <Link to="/profile">
+          <button
+          style={{
+            padding: "8px 12px",
+            backgroundColor: "#fff",
+            color: "black",
+            border: "none",
+            borderRadius: "5px",
+            cursor: "pointer"
+          }}
+        >
+          Perfil
+        </button>
+        </Link>
+        
+      </div>
+
+      <div style={{ fontSize: "1.2rem", fontWeight: "bold", marginTop: "50px" }}>
+        Puzzles resueltos: {solvedCount}
+      </div>
+
+      <ChessBoard
+        fen={fen}
+        game={game}
+        puzzleMoves={puzzleMoves}
+        userColor={userColor}
+        currentMoveIndex={currentMoveIndex}
+        setFen={setFen}
+        setGame={setGame}
+        setCurrentMoveIndex={setCurrentMoveIndex}
+        onPuzzleSolved={handlePuzzleSolved}
+        puzzleId={puzzleId}
+      />
     </div>
-    {/* <p>Puzzle ID: {puzzleId}</p> */}
-    <ChessBoard
-      fen={fen}
-      game={game}
-      puzzleMoves={puzzleMoves}
-      userColor={userColor}
-      currentMoveIndex={currentMoveIndex}
-      setFen={setFen}
-      setGame={setGame}
-      setCurrentMoveIndex={setCurrentMoveIndex}
-      onPuzzleSolved={handlePuzzleSolved}
-      puzzleId={puzzleId}
-    />
-  </div>
-);
-
-
-
+  );
 };
 
 export default ChessBoardContainer;
