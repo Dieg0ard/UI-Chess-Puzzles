@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './UserProfile.css';
 
 export default function UserProfile() {
@@ -32,7 +33,13 @@ export default function UserProfile() {
                 nivelAjedrez: data.nivel_ajedrez
             }),
         })
-        localStorage.setItem('usuario',formData.nombre_usuario);
+        localStorage.setItem('usuario', formData.nombre_usuario);
+    };
+
+    const navigate = useNavigate();
+
+    const handleBack = () => {
+        navigate('/game');
     };
 
     useEffect(() => {
@@ -71,7 +78,7 @@ export default function UserProfile() {
         }
     };
 
-     useEffect(() => {
+    useEffect(() => {
         if (message) {
             const timer = setTimeout(() => setMessage(''), 4000);
             return () => clearTimeout(timer);
@@ -80,6 +87,9 @@ export default function UserProfile() {
 
     return (
         <div className="profile-container">
+            <div className="header-with-button">
+                <button className="nav-button" onClick={handleBack}>Volver</button>
+            </div>
             <h1>Ajustes</h1>
             <h2>Perfil</h2>
             <form className="profile-form" onSubmit={handleSubmit}>

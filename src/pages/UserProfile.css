@@ -84,3 +84,12 @@ button:hover {
   font-weight: bold;
   margin-top: 8px;
 }
+
+.header-with-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 4000px;
+  margin-bottom: -6rem;
+}
